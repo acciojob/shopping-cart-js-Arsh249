@@ -26,6 +26,6 @@ function renderCart() {
 }
 
 // Example: Adding "Apple" and "Banana" to the cart array and rendering them
-cartItems.push({ item: 'Apple', price: '10' });
-cartItems.push({ item: 'Banana', price: '20' });
+// cartItems.push({ item: 'Apple', price: '10' });
+// cartItems.push({ item: 'Banana', price: '20' });
 renderCart();
