@@ -1,16 +1,31 @@
+// Array to store cart items
+let cartItems = [];
+
 function addToCart() {
     const item = document.getElementById('item').value;
     const price = document.getElementById('price').value;
 
     if (item && price) {
-        const cart = document.getElementById('cart');
-        const li = document.createElement('li');
-        li.textContent = `${item} - Rs.${price}`;
-        cart.appendChild(li);
-
-        // Optionally, you could store cart items in Local Storage as in the previous example
-        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        // Add item to the cart array
         cartItems.push({ item, price });
-        localStorage.setItem('cart', JSON.stringify(cartItems));
+
+        // Render the cart items
+        renderCart();
     }
 }
+
+function renderCart() {
+    const cart = document.getElementById('cart');
+    cart.innerHTML = ''; // Clear the cart before rendering
+
+    cartItems.forEach((cartItem) => {
+        const li = document.createElement('li');
+        li.textContent = `${cartItem.item} - Rs.${cartItem.price}`;
+        cart.appendChild(li);
+    });
+}
+
+// Example: Adding "Apple" and "Banana" to the cart array and rendering them
+cartItems.push({ item: 'Apple', price: '10' });
+cartItems.push({ item: 'Banana', price: '20' });
+renderCart();
