@@ -1,29 +1,16 @@
-//your code here
-window.onload = function() {
-    displayCartItems();
-};
+function addToCart() {
+    const item = document.getElementById('item').value;
+    const price = document.getElementById('price').value;
 
-function addToCart(product) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push(product);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    displayCartItems();
-}
-
-function displayCartItems() {
-    const cartItems = document.getElementById('cartItems');
-    cartItems.innerHTML = '';
-
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    cart.forEach((item, index) => {
+    if (item && price) {
+        const cart = document.getElementById('cart');
         const li = document.createElement('li');
-        li.textContent = item;
-        cartItems.appendChild(li);
-    });
-}
+        li.textContent = `${item} - Rs.${price}`;
+        cart.appendChild(li);
 
-function clearCart() {
-    localStorage.removeItem('cart');
-    displayCartItems();
+        // Optionally, you could store cart items in Local Storage as in the previous example
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        cartItems.push({ item, price });
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+    }
 }
